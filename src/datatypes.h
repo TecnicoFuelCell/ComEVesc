@@ -472,7 +472,7 @@ typedef struct {
 	float foc_sl_erpm_hfi;
 	uint16_t foc_hfi_start_samples;
 	float foc_hfi_obs_ovr_sec;
-	foc_hfi_samples foc_hfi_samples;
+	foc_hfi_samples foc_hfi_samples_VAR; //TODO: Check this, the original gave compilation error
 	bool foc_offsets_cal_on_boot;
 	float foc_offsets_current[3];
 	float foc_offsets_voltage[3];
