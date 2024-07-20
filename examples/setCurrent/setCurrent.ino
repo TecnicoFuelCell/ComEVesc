@@ -16,7 +16,6 @@ float current = 0.1; /** The current in amps */
 
 void setup() {
   Serial.begin(9600);
-  /** Setup UART port (Serial1 on Atmega32u4) */
   VescSerial.begin(115200, SERIAL_8N1, 9, 10); // 19200 baud, 8 data bits, no parity, 1 stop bit, pins 9 (RX) and 10 (TX)
   
   while (!Serial) {;}
