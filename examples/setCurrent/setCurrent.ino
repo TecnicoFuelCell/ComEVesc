@@ -2,25 +2,27 @@
   Name:    setCurrent.ino
   Modified: 20-06-2024
   By:  DiogoValdrez
-  Description: This is a very simple example of how to set the current for the motor
+  Description: This is a very simple example of how to set the current for the motor in a esp32c3 dev M1.
 */
 
 #include <ComEVesc.h>
 
-/** Initiate ComEVesc class */
+/** Initiate VescUart class */
 ComEVesc UART;
 
-float current = 1.0; /** The current in amps */
+HardwareSerial VescSerial(0.2);
+
+float current = 0.1; /** The current in amps */
 
 void setup() {
   Serial.begin(9600);
   /** Setup UART port (Serial1 on Atmega32u4) */
-  Serial1.begin(19200);
+  VescSerial.begin(115200, SERIAL_8N1, 9, 10); // 19200 baud, 8 data bits, no parity, 1 stop bit, pins 9 (RX) and 10 (TX)
   
-  while (!Serial1) {;}
+  while (!Serial) {;}
 
   /** Define which ports to use as UART */
-  UART.setSerialPort(&Serial1);
+  UART.setSerialPort(&VescSerial);
 }
 
 void loop() {
