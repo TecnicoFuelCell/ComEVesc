@@ -18,6 +18,11 @@ void ComEVesc::setDebugPort(Stream* port)
 	debugPort = port;
 }
 
+void ComEVesc::setDebugPort2(Stream* port)
+{
+	debugPort2 = port;
+}
+
 int ComEVesc::receiveUartMessage(uint8_t * payloadReceived) {
 
 	// Messages <= 255 starts with "2", 2nd byte is length
@@ -82,7 +87,7 @@ int ComEVesc::receiveUartMessage(uint8_t * payloadReceived) {
 	if(messageRead == false && debugPort != NULL ) {
 		debugPort->println("Timeout");
 	}
-	
+
 	bool unpacked = false;
 
 	if (messageRead) {
@@ -94,6 +99,9 @@ int ComEVesc::receiveUartMessage(uint8_t * payloadReceived) {
 		return lenPayload; 
 	}
 	else {
+		if (debugPort2!=NULL){
+			debugPort2->println("not");//TODO: after this????
+		}		
 		// No Message Read
 		return 0;
 	}
@@ -275,7 +283,15 @@ bool ComEVesc::getVescValues(uint8_t canId) {
 	packSendPayload(payload, payloadSize);
 
 	uint8_t message[256];
-	int messageLength = receiveUartMessage(message);
+
+	if (debugPort2!=NULL){
+		debugPort2->println("Post allocate");
+	}
+	int messageLength = receiveUartMessage(message); //TODO: problema aqui, crasha aqui
+
+	if (debugPort2!=NULL){
+		debugPort2->println("Repost recieve");
+	}
 
 	if (messageLength > 55) {
 		return processReadPacket(message); 

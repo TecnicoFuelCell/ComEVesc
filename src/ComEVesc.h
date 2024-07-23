@@ -77,6 +77,10 @@ class ComEVesc
          *
          * @return     True if successfull otherwise false
          */
+
+        void setDebugPort2(Stream* port);
+        
+
         bool getFWversion(void);
 
         /**
@@ -189,6 +193,8 @@ class ComEVesc
 		/** Variabel to hold the reference to the Serial object to use for debugging. 
 		  * Uses the class Stream instead of HarwareSerial */
 		Stream* debugPort = NULL;
+
+    Stream* debugPort2 = NULL;
 
 		/**
 		 * @brief      Packs the payload and sends it over Serial
