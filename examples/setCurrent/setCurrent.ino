@@ -10,9 +10,9 @@
 /** Initiate VescUart class */
 ComEVesc UART;
 
-HardwareSerial VescSerial(0.2);
+HardwareSerial VescSerial(1);
 
-float current = 0.1; /** The current in amps */
+float current = 3; /** The current in amps */
 
 void setup() {
   Serial.begin(9600);
