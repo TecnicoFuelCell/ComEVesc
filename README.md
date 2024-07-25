@@ -19,3 +19,7 @@ In one of of the examples we show how to implement a freewheel. We've noticed th
 1. install pyserial
 2. install the zip file
 3. go to Sketch->Include Library->Add .ZIP Library and select this ZIP
+
+# Contacts
+
+Any question contact me on Discord: duz2002
