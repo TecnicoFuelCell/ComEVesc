@@ -2,7 +2,9 @@
   Name:    freeWheel.ino
   Modified: 25-07-2024
   By:  DiogoValdrez
-  Description: This is a very simple example of a possible freewheel implementation in a esp32c3 dev M1.
+  Description: This is a very simple example of a possible freewheel implementation in a esp32c3 dev M1. 
+  To fine tune the frewheel you must run this example and tune the freecurrent variable. You should choose a value that lets the wheel run for a while after the motor is stopped.
+
 */
 
 #include <ComEVesc.h>
@@ -13,7 +15,7 @@ ComEVesc UART;
 HardwareSerial VescSerial(1);
 
 float maxcurrent = 5; /** initial current for ramp up */
-float freecurrent = 0.6; /** The current in amps */
+float freecurrent = 0.6; /** The current in amps that enables the freewheel. This current must be fine tuned. */
 int rampTime = 10000; /** Time to ramp up in milliseconds */
 bool stopped = false;
 
