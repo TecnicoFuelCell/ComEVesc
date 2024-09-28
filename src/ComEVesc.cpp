@@ -338,6 +338,23 @@ void ComEVesc::setNunchuckValues(uint8_t canId) {
 	packSendPayload(payload, payloadSize);
 }
 
+void ComEVesc::setHandbrake(float handbrake) {
+	return setCurrent(handbrake, 0);
+}
+
+void ComEVesc::setHandBrake(float handbrake, uint8_t canId) {
+	int32_t index = 0;
+	int payloadSize = (canId == 0 ? 5 : 7);
+	uint8_t payload[payloadSize];
+	if (canId != 0) {
+		payload[index++] = { COMM_FORWARD_CAN };
+		payload[index++] = canId;
+	}
+	payload[index++] = { COMM_SET_HANDBRAKE };
+	buffer_append_int32(payload, (int32_t)(handbrake * 1000), &index);
+	packSendPayload(payload, payloadSize);
+}
+
 void ComEVesc::setCurrent(float current) {
 	return setCurrent(current, 0);
 }
@@ -363,7 +380,7 @@ void ComEVesc::setBrakeCurrent(float brakeCurrent, uint8_t canId) {
 	int32_t index = 0;
 	int payloadSize = (canId == 0 ? 5 : 7);
 	uint8_t payload[payloadSize];
-	if (canId != 0) {
+	if (canId != 0) { 
 		payload[index++] = { COMM_FORWARD_CAN };
 		payload[index++] = canId;
 	}
