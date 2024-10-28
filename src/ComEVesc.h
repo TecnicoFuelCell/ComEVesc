@@ -120,16 +120,6 @@ class ComEVesc
          * @brief      Set the current to drive the motor
          * @param      current  - The current to apply
          */
-        
-        void setHandbrake(float handbrake);
-
-        /**
-         * @brief      Set the current to drive the motor
-         * @param      current  - The current to apply
-         * @param      canId  - The CAN ID of the VESC
-         */
-        void setHandbrake(float handbrake, uint8_t canId);
-
         void setCurrent(float current);
 
         /**
