@@ -12,14 +12,12 @@ ComEVesc UART;
 
 HardwareSerial VescSerial(1);
 
-float handbrake_current = 3;
+float handbrake_current = 30;
 
 void setup() {
   Serial.begin(9600);
-  VescSerial.begin(115200, SERIAL_8N1, 9, 10); // 115200 baud, 8 data bits, no parity, 1 stop bit, pins 9 (RX) and 10 (TX)
+  VescSerial.begin(115200, SERIAL_8N1, 7, 21); // 115200 baud, 8 data bits, no parity, 1 stop bit, pins 9 (RX) and 10 (TX)
   
-  while (!Serial) {;}
-
   /** Define which ports to use as UART */
   UART.setSerialPort(&VescSerial);
 }
@@ -27,6 +25,6 @@ void setup() {
 void loop() {
     
 /** Call the function setHandBrake() to set the handbrake */
-  UART.setHandBrake(handbrake_current);
+  UART.setHandbrake(handbrake_current);
 
 }

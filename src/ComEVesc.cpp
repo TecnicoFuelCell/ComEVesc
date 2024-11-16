@@ -339,10 +339,10 @@ void ComEVesc::setNunchuckValues(uint8_t canId) {
 }
 
 void ComEVesc::setHandbrake(float handbrake) {
-	return setCurrent(handbrake, 0);
+	return setHandbrake(handbrake, 0);
 }
 
-void ComEVesc::setHandBrake(float handbrake, uint8_t canId) {
+void ComEVesc::setHandbrake(float handbrake, uint8_t canId) {
 	int32_t index = 0;
 	int payloadSize = (canId == 0 ? 5 : 7);
 	uint8_t payload[payloadSize];
